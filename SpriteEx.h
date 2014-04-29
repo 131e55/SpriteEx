@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.h
 
-    Version : develop
+    Version : develop.001
     Author and Copyright : 131e55
 *******************************************************************************/
 
@@ -24,6 +24,13 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(SpriteEx);
 
+    // 横幅の取得. 返る値は getContentSize().width と同じ
+    // getContentSize() を経由せず直接取得したいときに便利
+    float getWidth();
+    
+    // 縦幅の取得. 返る値は getContentSize().height と同じ
+    // getContentSize() を経由せず直接取得したいときに便利
+    float getHeight();
 private:
     void _initialize(const std::string filename);
 };
