@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.cpp
 
-    Version : develop.001
+    Version : develop.003
     Author and Copyright : 131e55
 *******************************************************************************/
 
@@ -49,7 +49,21 @@ float SpriteEx::getHeight()
     return this->getContentSize().height;
 }
 
-// アンチエイリアスのオンオフ
+// Sprite の範囲を取得する
+Rect SpriteEx::getRect()
+{
+    Point point = this->getPosition();
+    Size size = this->getContentSize();
+    return Rect(
+        point.x - (size.width/2),
+        point.y - (size.height/2),
+        size.width,
+        size.height);
+}
+
+// アンチエイリアスの設定
+// bool b : true ならアンチエイリアスを有効にする
+//          false ならアンチエイリアスを無効にする
 void SpriteEx::antiAlias(bool b)
 {
     if (b == true) {

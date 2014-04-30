@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.h
 
-    Version : develop.001
+    Version : develop.003
     Author and Copyright : 131e55
 *******************************************************************************/
 
@@ -13,9 +13,7 @@
 class SpriteEx : public cocos2d::Sprite
 {
 public:
-    /*
-    * @param {const std::string} filename 画像ファイル名
-    */
+    // const std::string filename : 画像ファイル名
     static SpriteEx* createSprite(const std::string filename);
 
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -32,7 +30,12 @@ public:
     // getContentSize() を経由せず直接取得したいときに便利
     float getHeight();
 
-    // アンチエイリアスのオンオフ      
+    // Sprite の範囲を取得する
+    cocos2d::Rect getRect();
+
+    // アンチエイリアスの設定
+    // bool b : true ならアンチエイリアスを有効にする
+    //          false ならアンチエイリアスを無効にする
     void antiAlias(bool b);
 
 private:
