@@ -31,6 +31,10 @@ public:
     // 縦幅の取得. 返る値は getContentSize().height と同じ
     // getContentSize() を経由せず直接取得したいときに便利
     float getHeight();
+
+    // アンチエイリアスのオンオフ      
+    void antiAlias(bool b);
+
 private:
     void _initialize(const std::string filename);
 };

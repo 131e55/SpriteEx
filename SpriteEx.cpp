@@ -48,3 +48,14 @@ float SpriteEx::getHeight()
 {
     return this->getContentSize().height;
 }
+
+// アンチエイリアスのオンオフ
+void SpriteEx::antiAlias(bool b)
+{
+    if (b == true) {
+        this->getTexture()->setAntiAliasTexParameters();
+    }
+    else {
+        this->getTexture()->setAliasTexParameters();
+    }
+}
