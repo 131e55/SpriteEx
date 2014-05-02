@@ -33,6 +33,9 @@ public:
     // Sprite の範囲を取得する
     cocos2d::Rect getRect();
 
+    // Sprite に触れているかをチェックする
+    bool isTouch(cocos2d::Point point);
+
     // アンチエイリアスの設定
     // bool b : true ならアンチエイリアスを有効にする
     //          false ならアンチエイリアスを無効にする

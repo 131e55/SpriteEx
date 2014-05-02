@@ -63,6 +63,12 @@ Rect SpriteEx::getRect()
         size.height);
 }
 
+// Sprite に触れているかをチェックする
+bool SpriteEx::isTouch(Point point)
+{
+    return this->getRect().containsPoint(point);
+}
+
 // アンチエイリアスの設定
 // bool b : true ならアンチエイリアスを有効にする
 //          false ならアンチエイリアスを無効にする
