@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.cpp
 
-    Version : develop.003
+    Version : develop.006
     Author and Copyright : 131e55
 *******************************************************************************/
 
@@ -9,10 +9,10 @@
 
 USING_NS_CC;
 
-SpriteEx* SpriteEx::createSprite(const std::string filename)
+SpriteEx* SpriteEx::createSprite(const std::string filename, int divNumX, int divNumY)
 {
     auto sprite = SpriteEx::create();
-    sprite->_initialize(filename);
+    sprite->_initialize(filename, divNumX, divNumY);
 
     return sprite;
 }
@@ -30,9 +30,33 @@ bool SpriteEx::init()
     return true;
 }
 
-void SpriteEx::_initialize(const std::string filename)
+void SpriteEx::_initialize(const std::string filename, int divNumX, int divNumY)
 {
+    // 画像を読み込む
     this->initWithFile(filename);
+
+    // 受け取った値を保持しておく
+    _divNumX = divNumX;
+    _divNumY = divNumY;
+
+    // 分割後のフレームのサイズ (初期値はオリジナルのサイズ)
+    _frameSize = this->getContentSize();
+
+    // フレーム分割
+    if (_divNumX > 1 && _divNumY > 1) {
+        if ((int)_frameSize.width % (int)_divNumX == 0) {
+            _frameSize.width /= _divNumX;
+        } else {
+            log("[SpriteEx::_initialize Error] width %% _divNumX is not 0");
+        }
+
+        if ((int)_frameSize.height % (int)_divNumY == 0) {
+            _frameSize.height /= _divNumY;
+        } else {
+            log("[SpriteEx::_initialize Error] height %% _divNumY is not 0");
+        }
+        this->setTextureRect(Rect(0, 0, _frameSize.width, _frameSize.height));
+    }
 }
 
 // 横幅の取得. 返る値は getContentSize().width と同じ

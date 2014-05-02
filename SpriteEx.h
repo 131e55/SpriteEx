@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.h
 
-    Version : develop.003
+    Version : develop.006
     Author and Copyright : 131e55
 *******************************************************************************/
 
@@ -14,7 +14,9 @@ class SpriteEx : public cocos2d::Sprite
 {
 public:
     // const std::string filename : 画像ファイル名
-    static SpriteEx* createSprite(const std::string filename);
+    // int divNumX : 横のフレーム分割数
+    // int divNumY : 縦のフレーム分割数
+    static SpriteEx* createSprite(const std::string filename, int divNumX, int divNumY);
 
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
@@ -42,7 +44,17 @@ public:
     void antiAlias(bool b);
 
 private:
-    void _initialize(const std::string filename);
+    // 横のフレーム分割数
+    int _divNumX;
+
+    // 縦のフレーム分割数
+    int _divNumY;
+
+    // フレームサイズ
+    cocos2d::Size _frameSize;
+
+    // 初期化
+    void _initialize(const std::string filename, int divNumX, int divNumY);
 };
 
 #endif // __131E55_SPRITEEX__
