@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.cpp
 
-    Version : develop.006
+    Version : develop.007
     Author and Copyright : 131e55
 *******************************************************************************/
 
@@ -42,16 +42,21 @@ void SpriteEx::_initialize(const std::string filename, int divNumX, int divNumY)
     // 分割後のフレームのサイズ (初期値はオリジナルのサイズ)
     _frameSize = this->getContentSize();
 
+    // フレーム分割数
+    _totalFrameNum = 1;
+
     // フレーム分割
     if (_divNumX > 1 && _divNumY > 1) {
         if ((int)_frameSize.width % (int)_divNumX == 0) {
             _frameSize.width /= _divNumX;
+            _totalFrameNum *= _divNumX;
         } else {
             log("[SpriteEx::_initialize Error] width %% _divNumX is not 0");
         }
 
         if ((int)_frameSize.height % (int)_divNumY == 0) {
             _frameSize.height /= _divNumY;
+            _totalFrameNum *= _divNumY;
         } else {
             log("[SpriteEx::_initialize Error] height %% _divNumY is not 0");
         }
@@ -71,6 +76,30 @@ float SpriteEx::getWidth()
 float SpriteEx::getHeight()
 {
     return this->getContentSize().height;
+}
+
+// フレームを設定する
+void SpriteEx::setFrame(int frame_id)
+{
+    // オリジナルの画像のどの位置からフレームを切り抜くか
+    Point target = Point(0, 0);
+
+    // 負の id は除外
+    if (frame_id >= 0) {
+        // フレーム分割数より大きい id を指定されたときは周回する
+        frame_id %= _totalFrameNum;
+
+        // frame_id = 0 のときは target に変化なし
+        if (frame_id > 0) {
+            target.x = (frame_id % _divNumX) * _frameSize.width;
+            target.y = (frame_id / _divNumX) * _frameSize.height;
+        }
+
+        // フレームを切り抜く
+        this->setTextureRect(Rect(target.x, target.y, _frameSize.width, _frameSize.height));
+    } else {
+        log("[SpriteEx::setFrame Error] (frame >= 0) is not true");
+    }
 }
 
 // Sprite の範囲を取得する
