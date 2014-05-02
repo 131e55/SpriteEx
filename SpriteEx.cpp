@@ -53,10 +53,12 @@ float SpriteEx::getHeight()
 Rect SpriteEx::getRect()
 {
     Point point = this->getPosition();
+    Point anchor = this->getAnchorPoint();
     Size size = this->getContentSize();
+
     return Rect(
-        point.x - (size.width/2),
-        point.y - (size.height/2),
+        point.x - (size.width * anchor.x),
+        point.y - (size.height * anchor.y),
         size.width,
         size.height);
 }
