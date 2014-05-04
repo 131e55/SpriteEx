@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.cpp
 
-    Version : develop.008
+    Version : develop.009
     Author and Copyright : 131e55
 *******************************************************************************/
 
@@ -46,7 +46,7 @@ void SpriteEx::_initialize(const std::string filename, int divNumX, int divNumY)
     _totalFrameNum = 1;
 
     // フレーム分割
-    if (_divNumX > 1 && _divNumY > 1) {
+    if (_divNumX >= 1 && _divNumY >= 1) {
         if ((int)_frameSize.width % (int)_divNumX == 0) {
             _frameSize.width /= _divNumX;
             _totalFrameNum *= _divNumX;
