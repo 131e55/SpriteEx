@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.cpp
 
-    Version : develop.007
+    Version : develop.008
     Author and Copyright : 131e55
 *******************************************************************************/
 
@@ -119,6 +119,9 @@ Rect SpriteEx::getRect()
 // Sprite に触れているかをチェックする
 bool SpriteEx::isTouch(Point point)
 {
+    if (this->getOpacity() == 0) {
+        return false;
+    }
     return this->getRect().containsPoint(point);
 }
 
