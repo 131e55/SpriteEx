@@ -1,7 +1,7 @@
 SpriteEx
 ========
 cocos2d-x v3.0 の Sprite を個人用に拡張したものです.  
-SpriteEx.h をインクルードして利用します.
+SpriteEx.cpp と SpriteEx.h をプロジェクトに追加し, SpriteEx.h をインクルードして利用します.
 
 Reference 
 ---------
@@ -11,7 +11,7 @@ Reference
 * [float getHeight()](#method4)
 * [cocos2d::Rect getRect()](#method5)
 * [bool isTouch(cocos2d::Point point)](#method6)
-* [antiAlias](#method7)
+* [void antiAlias(bool b)](#method7)
 
 ### <a name="method1"> createSprite </a>
 ```
