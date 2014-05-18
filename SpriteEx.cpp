@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.cpp
 
-    Version : 1.00
+    Version : 1.01
     Author and Copyright : 131e55 (Twitter : @131e55)
 *******************************************************************************/
 
@@ -45,6 +45,9 @@ void SpriteEx::_initialize(const std::string filename, int divNumX, int divNumY)
     // フレーム分割数
     _totalFrameNum = 1;
 
+    // 現在のフレームID
+    _currentFrameID = 0;
+
     // フレーム分割
     if (_divNumX >= 1 && _divNumY >= 1) {
         if ((int)_frameSize.width % (int)_divNumX == 0) {
@@ -78,6 +81,12 @@ float SpriteEx::getHeight()
     return this->getContentSize().height;
 }
 
+// 現在のフレームIDを取得する
+int SpriteEx::getFrameID()
+{
+    return _currentFrameID;
+}
+
 // フレームを設定する
 void SpriteEx::setFrame(int frame_id)
 {
@@ -88,6 +97,7 @@ void SpriteEx::setFrame(int frame_id)
     if (frame_id >= 0) {
         // フレーム分割数より大きい id を指定されたときは周回する
         frame_id %= _totalFrameNum;
+        _currentFrameID = frame_id;
 
         // frame_id = 0 のときは target に変化なし
         if (frame_id > 0) {

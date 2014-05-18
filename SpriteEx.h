@@ -1,7 +1,7 @@
 /*******************************************************************************
     SpriteEx.h
 
-    Version : 1.00
+    Version : 1.01
     Author and Copyright : 131e55 (Twitter : @131e55)
 *******************************************************************************/
 
@@ -32,6 +32,9 @@ public:
     // getContentSize() を経由せず直接取得したいときに便利
     float getHeight();
 
+    // 現在のフレームIDを取得する
+    int getFrameID();
+
     // フレームを設定する
     void setFrame(int frame_id);
 
@@ -58,6 +61,9 @@ private:
 
     // フレーム分割数
     int _totalFrameNum;
+    
+    // 現在のフレームID
+    int _currentFrameID;
 
     // 初期化
     void _initialize(const std::string filename, int divNumX, int divNumY);
