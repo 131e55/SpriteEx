@@ -7,6 +7,7 @@ Reference
 ---------
 * [SpriteEx* createSprite(const std::string filename, int divNumX, int divNumY)](#method1)
 * [void setFrame(int frame_id)](#method2)
+* [int getFrameID()](#method8)
 * [float getWidth()](#method3)
 * [float getHeight()](#method4)
 * [cocos2d::Rect getRect()](#method5)
@@ -63,6 +64,13 @@ void setFrame(int frame_id)
 [ 5][ 6][ 7][ 8]
 [ 9][10][11][12]
 ```
+
+### <a name="method8"> getFrameID </a>
+```
+int getFrameID()
+```
+
+現在設定されているフレーム番号を取得します.
 
 ### <a name="method3"> getWidth </a>
 ```
